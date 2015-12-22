@@ -45,16 +45,28 @@
     
     
 //    //APIrequest and XML Parsing initization
-  apiUrl = [[NSString alloc]initWithFormat:@"http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=AKIAIBRITAZDANDFPXKQ&AssociateTag=bookb0a4-20&Operation=ItemSearch&Keywords=%@&SearchIndex=Books&Timestamp%@&Signature=+NFXlMlckU62R8CcKSfIbFh46BP0Llv8QIp+LdIT",query,timestamp];
-     NSLog(@"apiurl:%@",apiUrl);
+//  apiUrl = [[NSString alloc]initWithFormat:@"http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=AKIAIBRITAZDANDFPXKQ&AssociateTag=bookb0a4-20&Operation=ItemSearch&Keywords=%@&SearchIndex=Books       &Timestamp%@&Signature=+NFXlMlckU62R8CcKSfIbFh46BP0Llv8QIp+LdIT",query,timestamp];
+ //    NSLog(@"apiurl:%@",apiUrl);
+    
+    NSString *URL1 = [[NSString alloc] initWithFormat: @"http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=AKIAIXXN6LZXT7IXTPXQ&AssociateTag=bookb0a4-20&Operation=ItemSearch&Keywords=%@",query ];
+    NSLog(@"url1: %@",URL1);
+    NSString *URL2 = [[NSString alloc]initWithFormat: @"&SearchIndex=Books&Timestamp=%@",timestamp];
+    NSLog(@"url2: %@",URL2);
+    NSString *url3= [[NSString alloc]initWithFormat:@"&Signature=Vlp54FawNaT0kWK5z6/KqvBwgvRZmqZdjJyV5NWQ"];
+    NSLog(@"url3: %@",url3);
+    NSString *FURL= [[NSString alloc]initWithFormat:@"%@%@%@",URL1,URL2,url3];
+    NSLog(@"FURL: %@",FURL);
+    
+    
  //   apiUrl=[[NSString alloc]initWithFormat:@"https://www.google.com"];
- 
+ apiUrl=FURL;
     NSString* webStringURL = [apiUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
      NSURL *amazonURL = [NSURL  URLWithString:webStringURL];
      NSLog(@"amazonURL: %@",apiUrl);
      amazonData=[NSData dataWithContentsOfURL:amazonURL];
      NSLog(@"amazonData: %@",amazonData);
+    
 //   amazonXML =[[NSXMLParser alloc]initWithData:amazonData];
 //   NSLog(@"amazonXML : %@",amazonXML);
 //[amazonXML setDelegate:self];
